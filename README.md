@@ -1,2 +1,16 @@
 suno_swip
 =========
+    $("#wrap").swip({
+        left:function(){
+            alert("left");
+        },
+        top:function(){
+            alert("top");
+        },
+        bottom:function(){
+            alert("bottom");
+        },
+        right:function(){
+            alert("right");
+        }
+    });
