@@ -1,5 +1,6 @@
 suno_swip
 =========
+### 示例代码
     $("#wrap").swip({
         left:function(){
             alert("left");
