@@ -1,5 +1,7 @@
-suno_swip
+jquery轻量级插件：suno_swip
 =========
+#### 作者：余悠
+
 ### 示例代码
     $("#wrap").swip({
         left:function(){
