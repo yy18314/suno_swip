@@ -8,6 +8,7 @@
         startY:0,
         transX:0,
         transY:0,
+        time:0,
         addHandler : function(obj,type,fn){
             if(obj.attachEvent){
                 obj.attachEvent('on'+type,fn);
@@ -43,27 +44,26 @@
             this.transX = this.startX-touch.pageX;
             this.transY = this.startY-touch.pageY;
             if(this.config.moving != null)this.config.moving(this.transX,this.transY);
+
             e.preventDefault();
         },
         touch_end : function(){
-            //此处做swip分流
             var absX = Math.abs(this.transX);
             var absY = Math.abs(this.transY);
             if(absX > 20 && absX > absY){
-                //分流到left和right方向
                 if(this.transX < 0){
                     if(this.config.right != null)this.config.right.apply(this,arguments);
                 }else{
                     if(this.config.left != null)this.config.left.apply(this,arguments);
                 }
             }else if(absY > 20 && absY > absX){
-                //分流到top和bottom方向
                 if(this.transY < 0){
                     if(this.config.bottom != null)this.config.bottom.apply(this,arguments);
                 }else{
                     if(this.config.top != null)this.config.top.apply(this,arguments);
                 }
             }
+            if(this.config.speed != null)this.config.speed(this.transX,this.transY);
         }
     });
 })(jQuery);

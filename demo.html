@@ -7,31 +7,71 @@
     <style>
         *{ padding: 0; border: 0;margin: 0;}
         #wrap{ position: fixed; left: 30px; right: 30px; bottom: 30px; top: 30px; display: block; background: red; color: #fff; font-size: 50px; text-align: center; line-height: 100%}
+        .object{width:100px; height: 100px;display: block; position:fixed; color:#fff; left: 0; top:0;}
     </style>
     <script src="jquery.js" type="text/javascript"></script>
     <script src="jquery.suno_swip.js" type="text/javascript"></script>
+    <script src="jquery.suno_move.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="wrap">
         try to touch move!
+        <article class="object" id="obj1">可移动的div</article>
+
+        <article id="container" style="height: 100%; overflow: scroll; width: 100%; display: block;">
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+            this is a container<br>
+        </article>
     </div>
 </body>
 <script>
+    $("#obj1").move("top",{x:100,y:50},function(){
+        $(this).steps([
+            {x:0,y:0},
+            {x:50,y:50},
+            {x:100,y:0},
+            {x:0,y:100}
+        ],0);
+
+    });
+
+
+
     $("#wrap").swip({
         left:function(){
-            alert("left");
+            //alert("left");
         },
         top:function(){
-            alert("top");
+            alert("top#wrap");
         },
         bottom:function(){
-            alert("bottom");
+            //alert("bottom");
         },
         right:function(){
-            alert("right");
+            //alert("right");
         },
         moving: function (x,y) {
-            $("#wrap").html("dx:" + x + ",dy:" + y);
+
+        },
+        speed:function(vx,vy){
+            //松手时候，获取速度（单位：像素/秒）
+            //alert("vx:" + vx + ",vy:" + vy + ",time:" + Date.now());
+        }
+    });
+    $("#container").swip({
+        top:function(){
+            alert("top#container")
         }
     });
 </script>
